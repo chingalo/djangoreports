@@ -19,8 +19,54 @@
 	<div class "container-fluid" >
 		<div class = "row-fluid">
 			<div class = "well" style = "max-width:50%;margin:auto;margin-top:10%; min-height:300px;">
+				<!-- home page --->
+				
+				{% if content = 'home' %}
+				<ul class="nav nav-stacked nav-tabs">
+					{% for user in Users %}
+					<li style = "padding:1%;">
+						<a href = "{% url 'member' user.id %}"><i class="icon-user"></i> {{user.name}} </a
+					</li>
+					{% endfor %}
+				</ul>
 				<p>Report view</p>
 				<button onclick="window.location.href='{% url 'listUsers' %}'">view Users</button>
+				
+				{% endif %}
+				
+				
+				<!-- member details --->
+				
+				{% if content = 'member' %}
+				<span class = "pull-right"><button onclick = "window.location.href = '/'">Back</button></span>
+				<br><hr>
+				<h4>Details for {{member}}</h4>
+				<table class = "table">
+				<tr>
+					<td>Name</td>
+					<td>{{member.name}}</td>
+				</tr>
+				<tr>
+					<td>E-mail</td>
+					<td>{{member.email}}</td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td>{{member.password}}</td>
+				</tr>
+				<tr>
+					<td>Gender</td>
+					<td>{{member.sex}}</td>
+				</tr>
+				<tr>
+					<td>Mobile number</td>
+					<td>{{member.mobile_number}}</td>
+				</tr>
+				</table>
+				<hr>
+				<button onclick="window.location.href='#'">Download pdf</button><button onclick="window.location.href='{% url 'memberView' member.id %}'">View pdf</button>
+					
+				{% endif %}
 			</div>
 		</div>	
 	</div>
